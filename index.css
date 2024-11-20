@@ -20,8 +20,8 @@
 }
 
 .navbar-brand img {
-    height: 55px;
-    width: auto;
+    height: 60px;
+    width: 100px;
     object-fit: contain;
     display: block;
 }
@@ -40,12 +40,12 @@
 
 .search-form {
     position: relative;
-    height: 30px;
+    height: 40px;
     margin: 0 15px;
 }
 
 .search-form .form-control {
-    height: 30px;
+    height: 40px;
     padding: 0 35px 0 15px;
     border-radius: 15px;
     font-size: 14px;
@@ -112,7 +112,7 @@
 
 .newsletter-form .form-control {
     height: 45px;
-    padding-right: 140px;
+    padding: 8px 25px;
     border-radius: 22.5px;
 }
 
@@ -120,6 +120,8 @@
     position: absolute;
     right: 5px;
     top: 5px;
+    margin-top: -5px;
+    height: 45px;
     background-color: #0088CC;
     color: white;
     border-radius: 20px;
@@ -242,7 +244,7 @@
 
 @media (max-width: 425px) {
     .navbar-brand img {
-        height: 25px;
+        height: 55px;
     }
     
     .navbar {

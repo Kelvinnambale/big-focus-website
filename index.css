@@ -1,0 +1,262 @@
+/* Navbar Styles */
+.navbar {
+    min-height: 70px;
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 8px 15px;
+    line-height: 24px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #0088CC;
+}
+
+.search-form {
+    position: relative;
+    height: 30px;
+    margin: 0 15px;
+}
+
+.search-form .form-control {
+    height: 30px;
+    padding: 0 35px 0 15px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.search-form .btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: #666;
+    padding: 0 8px;
+    height: 30px;
+}
+
+.login-btn {
+    background-color: #0088CC;  /* Brown color from your image */
+    color: white;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    margin-left: 15px;
+}
+
+.login-btn:hover {
+    background-color: #0088CC;
+    color: white;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #f8f9fa;
+    padding: 50px 0 20px;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    margin-top: auto;
+}
+
+.footer-newsletter {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.footer-newsletter h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.footer-newsletter .text-accent {
+    color: #0088CC;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.newsletter-form {
+    max-width: 500px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.newsletter-form .form-control {
+    height: 45px;
+    padding-right: 140px;
+    border-radius: 22.5px;
+}
+
+.newsletter-form .subscribe-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: #0088CC;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 25px;
+    font-weight: 500;
+}
+
+.newsletter-form .subscribe-btn:hover {
+    background-color: #006699;
+    color: white;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.footer-nav .nav-link {
+    margin: 0 15px;
+    color: #666;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.footer-logo img {
+    height: 55px;
+    width: auto;
+}
+
+.anniversary-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 8px 15px;
+    }
+    
+    .navbar > .container {
+        padding: 0;
+    }
+    
+    .navbar-brand {
+        margin-right: auto;
+        z-index: 2;
+    }
+    
+    .navbar-brand img {
+        height: 55px;
+    }
+    
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #f8f9fa;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    
+    .nav-item {
+        text-align: center;
+        margin: 8px 0;
+    }
+    
+    .navbar-nav {
+        margin: 0 auto;
+    }
+    
+    .search-form {
+        width: 100%;
+        max-width: 300px;
+        margin: 15px auto;
+    }
+    
+    .login-btn {
+        display: block;
+        width: 200px;
+        margin: 15px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-nav {
+        flex-wrap: wrap;
+    }
+    
+    .footer-nav .nav-link {
+        margin: 5px 10px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .newsletter-form .form-control {
+        padding-right: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-form .subscribe-btn {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .navbar-brand img {
+        height: 25px;
+    }
+    
+    .navbar {
+        padding: 8px 10px;
+    }
+}
+
+/* Ensure footer stays at bottom */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

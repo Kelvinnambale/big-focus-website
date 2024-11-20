@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIGFOCUS TECHNOLIGIES LIMITED</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            min-height: 70px;
+            padding: 8px 15px;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar > .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+        .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 8px 15px;
+            line-height: 24px;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #0088CC;
+        }
+        .search-form {
+            position: relative;
+            height: 30px;
+            margin: 0 15px;
+        }
+        .search-form .form-control {
+            height: 30px;
+            padding: 0 35px 0 15px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        .search-form .btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #666;
+            padding: 0 8px;
+            height: 30px;
+        }
+        .login-btn {
+            background-color: #0088CC;
+            color: white;
+            border-radius: 15px;
+            padding: 4px 20px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            height: 30px;
+        }
+        .login-btn:hover {
+            background-color: #006699;
+            color: white;
+        }
+        .navbar-toggler {
+            padding: 4px 8px;
+            font-size: 16px;
+            margin-left: auto;
+            z-index: 2;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 8px 15px;
+            }
+            .navbar > .container {
+                padding: 0;
+            }
+            .navbar-brand {
+                margin-right: auto;
+                z-index: 2;
+            }
+            .navbar-brand img {
+                height: 55px; /* Slightly smaller on mobile but still visible */
+            }
+            .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #f8f9fa;
+                padding: 15px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            .nav-item {
+                text-align: center;
+                margin: 8px 0;
+            }
+            .navbar-nav {
+                margin: 0 auto;
+            }
+            .search-form {
+                width: 100%;
+                max-width: 300px;
+                margin: 15px auto;
+            }
+            .login-btn {
+                display: block;
+                width: 200px;
+                margin: 15px auto;
+            }
+            .navbar-toggler {
+                border: none;
+                padding: 4px 8px;
+            }
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 425px) {
+            .navbar-brand img {
+                height: 25px; /* Even on very small screens, logo remains visible */
+            }
+            .navbar {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="images/logo/logo.png" alt="Company Logo">
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Software</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                </ul>
+
+                <!-- Search Form -->
+                <form class="search-form d-flex">
+                    <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
+                    <button class="btn" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+
+                <!-- Login Button -->
+                <a href="#" class="btn login-btn">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bootstrap JS and Font Awesome -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

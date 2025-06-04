@@ -78,6 +78,35 @@
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .back-button {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-3px);
+            box-shadow: var(--shadow);
+        }
+
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
@@ -476,7 +505,12 @@
     <header class="header">
         <div class="container">
             <nav class="nav-container">
-                <div class="logo">Portfolio</div>
+                <div class="nav-left">
+                    <button class="back-button" onclick="goBack(index.html)">
+                        ← Back
+                    </button>
+                    <div class="logo">Graphics & Video Gallery</div>
+                </div>
                 <ul class="nav-links">
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#videos">Videos</a></li>
@@ -793,7 +827,15 @@
             });
         });
 
-        // Add some dynamic effects
+        /* Add JavaScript function for back button */
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Fallback if no history (e.g., direct access)
+                window.location.href = '/'; // Change this to your desired fallback URL
+            }
+        }
         document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.gallery-item, .video-item');
             const mouseX = e.clientX;

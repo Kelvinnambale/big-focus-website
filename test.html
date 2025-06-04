@@ -480,6 +480,15 @@
                 display: none;
             }
             
+            .nav-left {
+                gap: 1rem;
+            }
+            
+            .back-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
             .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -506,10 +515,10 @@
         <div class="container">
             <nav class="nav-container">
                 <div class="nav-left">
-                    <button class="back-button" onclick="goBack(index.html)">
+                    <a href="index.html" class="back-button">
                         ← Back
-                    </button>
-                    <div class="logo">Graphics Showcase</div>
+                    </a>
+                    <div class="logo">Graphic Gallery</div>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#gallery">Gallery</a></li>

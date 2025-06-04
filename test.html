@@ -3,199 +3,822 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIGFOCUS TECHNOLIGIES LIMITED</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Portfolio Gallery & Video Showcase</title>
     <style>
-        .navbar {
-            min-height: 70px;
-            padding: 8px 15px;
-            background-color: #f8f9fa;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        :root {
+            --primary: #0066cc;
+            --secondary: #00ccff;
+            --accent: #ff6b35;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6c757d;
+            --border-color: rgba(0,0,0,0.1);
+            --card-bg: #ffffff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
         }
-        .navbar > .container {
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b8bcc8;
+            --border-color: rgba(255,255,255,0.1);
+            --card-bg: #0f3460;
+            --navbar-bg: rgba(26, 26, 46, 0.95);
+            --light: #16213e;
+            --white: #0f3460;
+            --dark: #ffffff;
+            --gray: #b8bcc8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .navbar-brand {
-            padding: 0;
-            margin: 0;
-            display: inline-flex;
-            align-items: center;
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .navbar-brand img {
-            height: 35px;
-            width: auto;
-            object-fit: contain;
-            display: block;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
-        .nav-link {
-            color: #333;
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
             font-weight: 500;
-            padding: 8px 15px;
-            line-height: 24px;
             transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #0088CC;
-        }
-        .search-form {
             position: relative;
-            height: 30px;
-            margin: 0 15px;
         }
-        .search-form .form-control {
-            height: 30px;
-            padding: 0 35px 0 15px;
-            border-radius: 15px;
-            font-size: 14px;
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
-        .search-form .btn {
+
+        .nav-links a::after {
+            content: '';
             position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: none;
-            color: #666;
-            padding: 0 8px;
-            height: 30px;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
-        .login-btn {
-            background-color: #0088CC;
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
             color: white;
-            border-radius: 15px;
-            padding: 4px 20px;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            height: 30px;
+            transform: rotate(180deg);
         }
-        .login-btn:hover {
-            background-color: #006699;
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            padding: 6rem 0;
+            text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
         }
-        .navbar-toggler {
-            padding: 4px 8px;
-            font-size: 16px;
-            margin-left: auto;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
             z-index: 2;
         }
 
-        /* Mobile Responsive Styles */
-        @media (max-width: 991px) {
-            .navbar {
-                padding: 8px 15px;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-info h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-info p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 225px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .play-button:hover {
+            background: var(--primary);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-content {
+            padding: 1.5rem;
+        }
+
+        .video-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .video-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            cursor: default;
+        }
+
+        .modal-content img,
+        .modal-content video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            .navbar > .container {
-                padding: 0;
-            }
-            .navbar-brand {
-                margin-right: auto;
-                z-index: 2;
-            }
-            .navbar-brand img {
-                height: 55px; /* Slightly smaller on mobile but still visible */
-            }
-            .navbar-collapse {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: #f8f9fa;
-                padding: 15px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                z-index: 1000;
-            }
-            .nav-item {
-                text-align: center;
-                margin: 8px 0;
-            }
-            .navbar-nav {
-                margin: 0 auto;
-            }
-            .search-form {
-                width: 100%;
-                max-width: 300px;
-                margin: 15px auto;
-            }
-            .login-btn {
-                display: block;
-                width: 200px;
-                margin: 15px auto;
-            }
-            .navbar-toggler {
-                border: none;
-                padding: 4px 8px;
-            }
-            .navbar-toggler:focus {
-                box-shadow: none;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (max-width: 425px) {
-            .navbar-brand img {
-                height: 25px; /* Even on very small screens, logo remains visible */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .navbar {
-                padding: 8px 10px;
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <!-- Header -->
+    <header class="header">
         <div class="container">
-            <!-- Logo -->
-            <a class="navbar-brand" href="#">
-                <img src="images/logo/logo.png" alt="Company Logo">
-            </a>
-
-            <!-- Mobile Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navigation Content -->
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Software</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
+            <nav class="nav-container">
+                <div class="logo">Portfolio</div>
+                <ul class="nav-links">
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#videos">Videos</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    🌙
+                </button>
+            </nav>
+        </div>
+    </header>
 
-                <!-- Search Form -->
-                <form class="search-form d-flex">
-                    <input class="form-control" type="search" placeholder="Search..." aria-label="Search">
-                    <button class="btn" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-
-                <!-- Login Button -->
-                <a href="#" class="btn login-btn">Login</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Creative Design Portfolio</h1>
+                <p>Showcasing exceptional graphic design and corporate video production</p>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- Bootstrap JS and Font Awesome -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Graphic Design Gallery</h2>
+            
+            <div class="filter-buttons fade-in">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="print">Print Design</button>
+                <button class="filter-btn" data-filter="digital">Digital</button>
+                <button class="filter-btn" data-filter="packaging">Packaging</button>
+            </div>
+
+            <div class="gallery-grid fade-in">
+                <!-- Sample Gallery Items -->
+                <div class="gallery-item" data-category="branding">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=500&h=300&fit=crop" alt="Brand Identity Design">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Brand Identity Design</h3>
+                            <p>Complete branding solution with logo, colors, and typography</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="print">
+                    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=500&h=300&fit=crop" alt="Print Advertisement">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Print Advertisement</h3>
+                            <p>High-impact magazine and billboard design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="digital">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop" alt="Web Design">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Web Design</h3>
+                            <p>Modern and responsive website design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="packaging">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&h=300&fit=crop" alt="Product Packaging">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Product Packaging</h3>
+                            <p>Creative packaging design for consumer products</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="branding">
+                    <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=500&h=300&fit=crop" alt="Logo Design">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Logo Design</h3>
+                            <p>Memorable and versatile logo concepts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="digital">
+                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop" alt="Social Media Graphics">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Social Media Graphics</h3>
+                            <p>Engaging social media content and templates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="videos" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title fade-in">Corporate Videos</h2>
+            
+            <div class="video-grid fade-in">
+                <!-- Sample Video Items -->
+                <div class="video-item">
+                    <div class="video-container">
+                        <video poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop">
+                            <source src="#" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Corporate Introduction</h3>
+                        <p>Professional company introduction video showcasing values and services</p>
+                        <div class="video-tags">
+                            <span class="tag">Corporate</span>
+                            <span class="tag">Introduction</span>
+                            <span class="tag">Professional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-item">
+                    <div class="video-container">
+                        <video poster="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop">
+                            <source src="#" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Product Launch</h3>
+                        <p>Dynamic product launch video with motion graphics and professional cinematography</p>
+                        <div class="video-tags">
+                            <span class="tag">Product</span>
+                            <span class="tag">Launch</span>
+                            <span class="tag">Motion Graphics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-item">
+                    <div class="video-container">
+                        <video poster="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop">
+                            <source src="#" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Training & Education</h3>
+                        <p>Educational corporate training video with clear messaging and engaging visuals</p>
+                        <div class="video-tags">
+                            <span class="tag">Training</span>
+                            <span class="tag">Education</span>
+                            <span class="tag">Corporate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-item">
+                    <div class="video-container">
+                        <video poster="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop">
+                            <source src="#" type="video/mp4">
+                        </video>
+                        <div class="play-button" onclick="playVideo(this)">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Brand Story</h3>
+                        <p>Compelling brand storytelling video highlighting company mission and impact</p>
+                        <div class="video-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Storytelling</span>
+                            <span class="tag">Mission</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <!-- Content will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        }
+
+        // Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const filter = button.getAttribute('data-filter');
+
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Gallery Item Click
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    openModal(img.src, 'image');
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Video Play Functionality
+        function playVideo(button) {
+            const video = button.parentElement.querySelector('video');
+            if (video.paused) {
+                video.play();
+                button.style.display = 'none';
+                
+                video.addEventListener('pause', () => {
+                    button.style.display = 'flex';
+                });
+                
+                video.addEventListener('ended', () => {
+                    button.style.display = 'flex';
+                });
+            }
+        }
+
+        // Modal Functionality
+        function openModal(src, type) {
+            const modal = document.getElementById('modal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            if (type === 'image') {
+                modalContent.innerHTML = `<img src="${src}" alt="Gallery Image">`;
+            } else if (type === 'video') {
+                modalContent.innerHTML = `<video controls autoplay><source src="${src}" type="video/mp4"></video>`;
+            }
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some dynamic effects
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.gallery-item, .video-item');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardX = rect.left + rect.width / 2;
+                const cardY = rect.top + rect.height / 2;
+                
+                const distanceX = mouseX - cardX;
+                const distanceY = mouseY - cardY;
+                const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                
+                if (distance < 200) {
+                    const intensity = (200 - distance) / 200;
+                    const rotateX = (distanceY / 200) * intensity * 5;
+                    const rotateY = (distanceX / 200) * intensity * -5;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${intensity * 10}px)`;
+                } else {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

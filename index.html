@@ -21,13 +21,39 @@
             --white: #ffffff;
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6c757d;
+            --border-color: rgba(0,0,0,0.1);
+            --card-bg: #ffffff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b8bcc8;
+            --border-color: rgba(255,255,255,0.1);
+            --card-bg: #0f3460;
+            --navbar-bg: rgba(26, 26, 46, 0.95);
+            --light: #16213e;
+            --white: #0f3460;
+            --dark: #ffffff;
+            --gray: #b8bcc8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Navigation */
@@ -35,12 +61,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--navbar-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
 
         .nav-container {
@@ -49,6 +75,11 @@
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
             align-items: center;
         }
 
@@ -69,7 +100,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
@@ -98,6 +129,29 @@
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            padding: 0.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow);
         }
 
         /* Hero Section */
@@ -210,7 +264,7 @@
 
         /* About Section */
         .about {
-            background: var(--light);
+            background: var(--bg-secondary);
         }
 
         .about-content {
@@ -242,7 +296,7 @@
 
         .about-text p {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
 
@@ -255,7 +309,7 @@
         }
 
         .service-card {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
@@ -301,17 +355,17 @@
         .service-card h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .service-card p {
-            color: var(--gray);
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
         /* Projects Section */
         .projects {
-            background: var(--light);
+            background: var(--bg-secondary);
         }
 
         .projects-grid {
@@ -322,7 +376,7 @@
         }
 
         .project-card {
-            background: var(--white);
+            background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -381,11 +435,11 @@
         .project-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .project-content p {
-            color: var(--gray);
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 1rem;
         }
@@ -398,7 +452,7 @@
         }
 
         .tech-tag {
-            background: var(--light);
+            background: var(--bg-secondary);
             color: var(--primary);
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
@@ -456,7 +510,7 @@
         }
 
         .skill-item {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -471,7 +525,7 @@
         .skill-bar {
             width: 100%;
             height: 8px;
-            background: #e9ecef;
+            background: var(--bg-secondary);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -579,13 +633,18 @@
                 display: block;
             }
 
+            .theme-toggle {
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: var(--white);
+                background: var(--navbar-bg);
                 flex-direction: column;
                 padding: 2rem;
                 box-shadow: var(--shadow);
@@ -638,7 +697,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">NamsTech</div>
+            <div class="logo">Namstech Digital</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -647,14 +706,17 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="mobile-menu">☰</div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="mobile-menu">☰</div>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Namstech Digital Solutions</h1>
+            <h1>Kelvin Nambale</h1>
             <div class="subtitle">IT Enthusiast & Digital Solutions Expert</div>
             <p>Transforming businesses through innovative technology solutions, web development, and comprehensive IT services</p>
             <a href="#contact" class="cta-button">Get Started</a>
@@ -668,8 +730,8 @@
             <div class="about-content fade-in">
                 <div class="profile-img">KN</div>
                 <div class="about-text">
-                    <h3>Professional IT Enthusiast</h3>
-                    <p>With experience in IT consulting and digital solutions, I specialize in helping businesses leverage technology to achieve their goals. My expertise spans web development, graphic design, networking, and comprehensive IT support services.</p>
+                    <h3>Professional IT Consultant</h3>
+                    <p>With extensive experience in IT consulting and digital solutions, I specialize in helping businesses leverage technology to achieve their goals. My expertise spans web development, graphic design, networking, and comprehensive IT support services.</p>
                     <p>Through Namstech Digital Solutions, I provide end-to-end technology services that empower businesses to thrive in the digital age. From custom web development to government service facilitation, I'm committed to delivering excellence in every project.</p>
                     <p>My approach combines technical expertise with business acumen to deliver solutions that not only work but drive real business value.</p>
                 </div>
@@ -981,6 +1043,31 @@
             navLinks.classList.toggle('active');
         });
 
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        
+        // Update toggle button text based on current theme
+        function updateThemeToggle() {
+            const currentTheme = body.getAttribute('data-theme');
+            themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+        }
+        
+        updateThemeToggle();
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggle();
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1055,10 +1142,20 @@
         // Navbar background on scroll
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
+            const currentTheme = body.getAttribute('data-theme');
+            
             if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                if (currentTheme === 'dark') {
+                    navbar.style.background = 'rgba(26, 26, 46, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                }
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                if (currentTheme === 'dark') {
+                    navbar.style.background = 'rgba(26, 26, 46, 0.95)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
             }
         });
     </script>

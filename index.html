@@ -309,7 +309,141 @@
             line-height: 1.6;
         }
 
-        /* Skills Section */
+        /* Projects Section */
+        .projects {
+            background: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            transform: translateX(100%);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-content p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .project-link.primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .project-link.primary:hover {
+            background: #0052a3;
+        }
+
+        .project-link.secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
         .skills {
             background: var(--light);
         }
@@ -509,6 +643,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -586,6 +721,129 @@
                     <div class="service-icon">📊</div>
                     <h3>Accounting Services</h3>
                     <p>Comprehensive accounting solutions including bookkeeping, financial reporting, and accounting software setup and training.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <span class="project-category">Web Development</span>
+                        <h3>E-Commerce Platform</h3>
+                        <p>A fully responsive e-commerce website with integrated payment gateway, inventory management, and customer portal for a local retail business.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">View Live</a>
+                            <a href="#" class="project-link secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">🏢</div>
+                    <div class="project-content">
+                        <span class="project-category">Corporate Solution</span>
+                        <h3>Business Management System</h3>
+                        <p>Custom CRM and inventory management system for a manufacturing company, including automated reporting and multi-user access control.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Express</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">View Demo</a>
+                            <a href="#" class="project-link secondary">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">🎨</div>
+                    <div class="project-content">
+                        <span class="project-category">Branding & Design</span>
+                        <h3>Restaurant Brand Identity</h3>
+                        <p>Complete brand identity design including logo, menu design, business cards, and social media templates for a local restaurant chain.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Adobe Illustrator</span>
+                            <span class="tech-tag">Photoshop</span>
+                            <span class="tech-tag">InDesign</span>
+                            <span class="tech-tag">Figma</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">View Portfolio</a>
+                            <a href="#" class="project-link secondary">Process</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">🎬</div>
+                    <div class="project-content">
+                        <span class="project-category">Video Production</span>
+                        <h3>Corporate Introduction Videos</h3>
+                        <p>Professional video production series for tech startups, including company introductions, product demos, and promotional content.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">After Effects</span>
+                            <span class="tech-tag">Premiere Pro</span>
+                            <span class="tech-tag">Motion Graphics</span>
+                            <span class="tech-tag">Sound Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">Watch Reel</a>
+                            <a href="#" class="project-link secondary">Behind Scenes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">🔗</div>
+                    <div class="project-content">
+                        <span class="project-category">Network Infrastructure</span>
+                        <h3>Office Network Setup</h3>
+                        <p>Complete network infrastructure design and implementation for a 50-employee office, including security protocols and backup systems.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Cisco Equipment</span>
+                            <span class="tech-tag">Network Security</span>
+                            <span class="tech-tag">VPN Setup</span>
+                            <span class="tech-tag">Monitoring</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">Technical Specs</a>
+                            <a href="#" class="project-link secondary">Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <span class="project-category">Digital Services</span>
+                        <h3>Government Services Portal</h3>
+                        <p>Streamlined digital portal helping clients navigate KRA tax submissions and eCitizen services, reducing processing time by 70%.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Government APIs</span>
+                            <span class="tech-tag">Secure Forms</span>
+                            <span class="tech-tag">Document Processing</span>
+                            <span class="tech-tag">Compliance</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">Learn More</a>
+                            <a href="#" class="project-link secondary">Success Stories</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

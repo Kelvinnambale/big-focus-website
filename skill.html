@@ -508,6 +508,239 @@
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
         }
+
+/* Reviews Section Styles */
+.reviews {
+    background: var(--bg-secondary);
+    padding: 5rem 0;
+}
+
+.reviews-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+/* Review Form Styles */
+.review-form {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.review-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Star Rating Styles */
+.star-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 1rem;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.star:hover,
+.star.active {
+    color: #ffd700;
+    transform: scale(1.1);
+}
+
+.star:hover ~ .star {
+    color: #ddd;
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-left: 10px;
+}
+
+.submit-review-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--gradient);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.submit-review-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.submit-review-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Display Reviews Styles */
+.reviews-display {
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.reviews-display h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+.review-item {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+.review-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.reviewer-info h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    font-size: 1.1rem;
+}
+
+.reviewer-service {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.review-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.review-rating .star {
+    font-size: 1.2rem;
+    cursor: default;
+}
+
+.review-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.review-date {
+    color: var(--gray);
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+.no-reviews {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .star {
+        font-size: 1.5rem;
+    }
+    
+    .reviews-display {
+        max-height: 400px;
+    }
+}
+
+/* Custom Scrollbar for Reviews Display */
+.reviews-display::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reviews-display::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.reviews-display::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.reviews-display::-webkit-scrollbar-thumb:hover {
+    background: #0052a3;
+}
     </style>
 </head>
 <body>
@@ -575,6 +808,132 @@
             </button>
         </div>
     </section>
+<section id="reviews" class="section reviews">
+    <div class="container">
+        <h2 class="section-title fade-in">Client Reviews</h2>
+        <div class="reviews-container">
+            <!-- Review Submission Form -->
+            <div class="review-form fade-in">
+                <h3>Share Your Experience</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="reviewerName">Your Name *</label>
+                        <input type="text" id="reviewerName" name="reviewerName" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewerEmail">Email (Optional)</label>
+                        <input type="email" id="reviewerEmail" name="reviewerEmail" placeholder="your.email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceUsed">Service Used *</label>
+                        <select id="serviceUsed" name="serviceUsed" required>
+                            <option value="">Select a service</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Graphic Design">Graphic Design</option>
+                            <option value="Networking Solutions">Networking Solutions</option>
+                            <option value="ICT Consulting">ICT Consulting</option>
+                            <option value="Windows & Office Installation">Windows & Office Installation</option>
+                            <option value="KRA & eCitizen Services">KRA & eCitizen Services</option>
+                            <option value="Video Production">Video Production</option>
+                            <option value="Accounting Services">Accounting Services</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Rating *</label>
+                        <div class="star-rating">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                            <span class="rating-text">Click to rate</span>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">Your Review *</label>
+                        <textarea id="reviewText" name="reviewText" placeholder="Tell us about your experience with our services..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">Submit Review</button>
+                </form>
+            </div>
+            
+            <!-- Reviews Display -->
+            <div class="reviews-display fade-in">
+                <h3>What Our Clients Say</h3>
+                <div id="reviewsList">
+                    <!-- Sample reviews - these will be replaced by submitted reviews -->
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <h4>Sarah Johnson</h4>
+                                <div class="reviewer-service">Web Development</div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            Excellent service! Kelvin created a beautiful, responsive website for my business. The attention to detail and professional approach exceeded my expectations.
+                        </div>
+                        <div class="review-date">2 weeks ago</div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <h4>Michael Chen</h4>
+                                <div class="reviewer-service">ICT Consulting</div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            Great IT consulting services. Helped streamline our office network and provided valuable insights for our tech infrastructure. Highly recommended!
+                        </div>
+                        <div class="review-date">1 month ago</div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <h4>Grace Wanjiku</h4>
+                                <div class="reviewer-service">KRA Services</div>
+                            </div>
+                            <div class="review-rating">
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star active">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <div class="review-text">
+                            Very helpful with KRA and eCitizen services. Made the whole process smooth and stress-free. Professional and efficient service.
+                        </div>
+                        <div class="review-date">3 weeks ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <script>
         const GITHUB_USERNAME = 'kelvinnambale';

@@ -1291,5 +1291,175 @@
             loadGitHubData();
         });
     </script>
+    
+
+<script>
+// Review functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.star-rating .star');
+    const ratingInput = document.getElementById('rating');
+    const ratingText = document.querySelector('.rating-text');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsList = document.getElementById('reviewsList');
+    
+    // Star rating functionality
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            ratingInput.value = rating;
+            
+            // Update star display
+            stars.forEach((s, index) => {
+                if (index < rating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+            
+            // Update rating text
+            const ratingTexts = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+            ratingText.textContent = ratingTexts[rating];
+        });
+    });
+    
+    // Load existing reviews from localStorage
+    loadReviews();
+    
+    // Handle form submission
+    reviewForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const reviewData = {
+            name: formData.get('reviewerName'),
+            email: formData.get('reviewerEmail'),
+            service: formData.get('serviceUsed'),
+            rating: parseInt(formData.get('rating')),
+            text: formData.get('reviewText'),
+            date: new Date().toISOString()
+        };
+        
+        // Validate rating
+        if (!reviewData.rating) {
+            alert('Please select a rating');
+            return;
+        }
+        
+        // Save review
+        saveReview(reviewData);
+        
+        // Reset form
+        this.reset();
+        stars.forEach(star => star.classList.remove('active'));
+        ratingText.textContent = 'Click to rate';
+        ratingInput.value = '';
+        
+        // Show success message
+        const submitBtn = this.querySelector('.submit-review-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Review Submitted!';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+        
+        // Reload reviews
+        loadReviews();
+    });
+    
+    function saveReview(reviewData) {
+        let reviews = JSON.parse(localStorage.getItem('namstech_reviews') || '[]');
+        reviews.unshift(reviewData); // Add to beginning of array
+        
+        // Keep only last 20 reviews
+        if (reviews.length > 20) {
+            reviews = reviews.slice(0, 20);
+        }
+        
+        localStorage.setItem('namstech_reviews', JSON.stringify(reviews));
+    }
+    
+    function loadReviews() {
+        const reviews = JSON.parse(localStorage.getItem('namstech_reviews') || '[]');
+        
+        if (reviews.length === 0) {
+            return; // Keep the sample reviews
+        }
+        
+        let reviewsHTML = '';
+        reviews.forEach(review => {
+            const timeAgo = getTimeAgo(new Date(review.date));
+            const stars = generateStars(review.rating);
+            
+            reviewsHTML += `
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <h4>${escapeHtml(review.name)}</h4>
+                            <div class="reviewer-service">${escapeHtml(review.service)}</div>
+                        </div>
+                        <div class="review-rating">
+                            ${stars}
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        ${escapeHtml(review.text)}
+                    </div>
+                    <div class="review-date">${timeAgo}</div>
+                </div>
+            `;
+        });
+        
+        reviewsList.innerHTML = reviewsHTML;
+    }
+    
+    function generateStars(rating) {
+        let starsHTML = '';
+        for (let i = 1; i <= 5; i++) {
+            const activeClass = i <= rating ? 'active' : '';
+            starsHTML += `<span class="star ${activeClass}">★</span>`;
+        }
+        return starsHTML;
+    }
+    
+    function getTimeAgo(date) {
+        const now = new Date();
+        const diffTime = Math.abs(now - date);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 0) {
+            return 'Today';
+        } else if (diffDays === 1) {
+            return '1 day ago';
+        } else if (diffDays < 7) {
+            return `${diffDays} days ago`;
+        } else if (diffDays < 30) {
+            const weeks = Math.floor(diffDays / 7);
+            return weeks === 1 ? '1 week ago' : `${weeks} weeks ago`;
+        } else if (diffDays < 365) {
+            const months = Math.floor(diffDays / 30);
+            return months === 1 ? '1 month ago' : `${months} months ago`;
+        } else {
+            const years = Math.floor(diffDays / 365);
+            return years === 1 ? '1 year ago' : `${years} years ago`;
+        }
+    }
+    
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+});
+</script>
 </body>
 </html>

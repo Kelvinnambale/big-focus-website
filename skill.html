@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Skills Showcase</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #00ccff;
+            --accent: #ff6b35;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6c757d;
+            --border-color: rgba(0,0,0,0.1);
+            --card-bg: #ffffff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #b8bcc8;
+            --border-color: rgba(255,255,255,0.1);
+            --card-bg: #0f3460;
+            --navbar-bg: rgba(26, 26, 46, 0.95);
+            --light: #16213e;
+            --white: #0f3460;
+            --dark: #ffffff;
+            --gray: #b8bcc8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .skills-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .github-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .languages-section {
+            margin: 50px 0;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .language-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .language-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .language-name {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .language-bar {
+            background: var(--bg-secondary);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .language-progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .language-percentage {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .repositories-section {
+            margin: 50px 0;
+        }
+
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .repo-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .repo-name {
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .repo-name:hover {
+            text-decoration: underline;
+        }
+
+        .repo-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .repo-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contributions-chart {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin: 30px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .error-message {
+            background: #ff4757;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .refresh-btn {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .github-stats {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <section class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">GitHub Skills & Expertise</h2>
+                <p class="section-subtitle">
+                    Real-time data from my GitHub profile showcasing my development journey, contributions, and technical expertise
+                </p>
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Fetching GitHub data...</p>
+            </div>
+
+            <div id="content" style="display: none;">
+                <!-- GitHub Stats -->
+                <div class="github-stats" id="github-stats"></div>
+
+                <!-- Top Languages -->
+                <div class="languages-section">
+                    <h3 class="chart-title">Programming Languages</h3>
+                    <div class="languages-grid" id="languages-grid"></div>
+                </div>
+
+                <!-- Recent Repositories -->
+                <div class="repositories-section">
+                    <h3 class="chart-title">Featured Repositories</h3>
+                    <div class="repo-grid" id="repo-grid"></div>
+                </div>
+
+                <!-- Contributions Chart -->
+                <div class="contributions-chart">
+                    <h3 class="chart-title">Contribution Activity</h3>
+                    <p style="text-align: center; color: var(--text-secondary); margin-top: 20px;">
+                        GitHub contributions data is displayed through the GitHub profile
+                    </p>
+                </div>
+            </div>
+
+            <div id="error-container"></div>
+            
+            <button class="refresh-btn" onclick="loadGitHubData()" style="display: none;" id="refresh-btn">
+                <i class="fas fa-sync-alt"></i> Refresh Data
+            </button>
+        </div>
+    </section>
+
+    <script>
+        const GITHUB_USERNAME = 'kelvinnambale';
+        const GITHUB_API_BASE = 'https://api.github.com';
+
+        // Language colors mapping
+        const languageColors = {
+            'JavaScript': '#f1e05a',
+            'TypeScript': '#2b7489',
+            'Python': '#3572A5',
+            'Java': '#b07219',
+            'C++': '#f34b7d',
+            'C': '#555555',
+            'HTML': '#e34c26',
+            'CSS': '#563d7c',
+            'PHP': '#4F5D95',
+            'Ruby': '#701516',
+            'Go': '#00ADD8',
+            'Rust': '#dea584',
+            'Swift': '#ffac45',
+            'Kotlin': '#F18E33',
+            'C#': '#239120',
+            'Shell': '#89e051',
+            'Vue': '#2c3e50',
+            'React': '#61dafb',
+            'Dart': '#00B4AB'
+        };
+
+        let githubData = {
+            user: null,
+            repos: [],
+            languages: {}
+        };
+
+        // Cache for faster subsequent loads
+        let dataCache = {
+            timestamp: 0,
+            data: null,
+            duration: 5 * 60 * 1000 // 5 minutes cache
+        };
+
+        async function fetchGitHubData() {
+            // Check cache first
+            const now = Date.now();
+            if (dataCache.data && (now - dataCache.timestamp) < dataCache.duration) {
+                Object.assign(githubData, dataCache.data);
+                return true;
+            }
+
+            try {
+                // Show progressive loading
+                updateLoadingMessage('Fetching profile data...');
+
+                // Fetch user and repos in parallel for speed
+                const [userResponse, reposResponse] = await Promise.all([
+                    fetch(`${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`),
+                    fetch(`${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=8`)
+                ]);
+
+                if (!userResponse.ok) throw new Error('User not found');
+                if (!reposResponse.ok) throw new Error('Failed to fetch repositories');
+
+                const [user, repos] = await Promise.all([
+                    userResponse.json(),
+                    reposResponse.json()
+                ]);
+
+                githubData.user = user;
+                githubData.repos = repos;
+
+                // Render basic data first
+                renderGitHubStats();
+                renderRepositories();
+                showPartialContent();
+
+                updateLoadingMessage('Loading programming languages...');
+
+                // Fetch languages for top 6 repos only (not all)
+                const topRepos = repos.slice(0, 6);
+                const languagePromises = topRepos.map(async (repo) => {
+                    try {
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout
+                        
+                        const langResponse = await fetch(repo.languages_url, {
+                            signal: controller.signal
+                        });
+                        clearTimeout(timeoutId);
+                        
+                        if (langResponse.ok) {
+                            const languages = await langResponse.json();
+                            return { repo: repo.name, languages };
+                        }
+                    } catch (error) {
+                        if (error.name !== 'AbortError') {
+                            console.error(`Error fetching languages for ${repo.name}:`, error);
+                        }
+                    }
+                    return { repo: repo.name, languages: {} };
+                });
+
+                // Use Promise.allSettled for better error handling
+                const repoLanguages = await Promise.allSettled(languagePromises);
+                
+                // Aggregate language data from successful requests only
+                const totalLanguages = {};
+                repoLanguages
+                    .filter(result => result.status === 'fulfilled')
+                    .forEach(result => {
+                        const { languages } = result.value;
+                        Object.entries(languages).forEach(([lang, bytes]) => {
+                            totalLanguages[lang] = (totalLanguages[lang] || 0) + bytes;
+                        });
+                    });
+
+                githubData.languages = totalLanguages;
+                
+                // Cache the data
+                dataCache = {
+                    timestamp: now,
+                    data: { ...githubData }
+                };
+
+                return true;
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        function renderGitHubStats() {
+            const statsContainer = document.getElementById('github-stats');
+            const user = githubData.user;
+            
+            const stats = [
+                {
+                    icon: 'fas fa-code-branch',
+                    number: user.public_repos,
+                    label: 'Public Repositories'
+                },
+                {
+                    icon: 'fas fa-users',
+                    number: user.followers,
+                    label: 'Followers'
+                },
+                {
+                    icon: 'fas fa-user-plus',
+                    number: user.following,
+                    label: 'Following'
+                },
+                {
+                    icon: 'fas fa-star',
+                    number: githubData.repos.reduce((total, repo) => total + repo.stargazers_count, 0),
+                    label: 'Total Stars'
+                },
+                {
+                    icon: 'fas fa-code-fork',
+                    number: githubData.repos.reduce((total, repo) => total + repo.forks_count, 0),
+                    label: 'Total Forks'
+                },
+                {
+                    icon: 'fas fa-calendar-alt',
+                    number: new Date().getFullYear() - new Date(user.created_at).getFullYear(),
+                    label: 'Years on GitHub'
+                }
+            ];
+
+            statsContainer.innerHTML = stats.map(stat => `
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="${stat.icon}"></i>
+                    </div>
+                    <div class="stat-number">${stat.number.toLocaleString()}</div>
+                    <div class="stat-label">${stat.label}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderLanguages() {
+            const languagesContainer = document.getElementById('languages-grid');
+            const languages = githubData.languages;
+            
+            const totalBytes = Object.values(languages).reduce((sum, bytes) => sum + bytes, 0);
+            const sortedLanguages = Object.entries(languages)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 8);
+
+            languagesContainer.innerHTML = sortedLanguages.map(([lang, bytes]) => {
+                const percentage = ((bytes / totalBytes) * 100).toFixed(1);
+                const color = languageColors[lang] || '#6c757d';
+                
+                return `
+                    <div class="language-card">
+                        <div class="language-name">
+                            <div class="language-color" style="background-color: ${color}"></div>
+                            ${lang}
+                        </div>
+                        <div class="language-bar">
+                            <div class="language-progress" style="width: ${percentage}%"></div>
+                        </div>
+                        <div class="language-percentage">${percentage}%</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderRepositories() {
+            const repoContainer = document.getElementById('repo-grid');
+            const repos = githubData.repos;
+            
+            repoContainer.innerHTML = repos.map(repo => `
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <i class="fas fa-folder"></i>
+                        <a href="${repo.html_url}" target="_blank" class="repo-name">
+                            ${repo.name}
+                        </a>
+                    </div>
+                    <div class="repo-description">
+                        ${repo.description || 'No description available'}
+                    </div>
+                    <div class="repo-stats">
+                        <div class="repo-stat">
+                            <i class="fas fa-star"></i>
+                            ${repo.stargazers_count}
+                        </div>
+                        <div class="repo-stat">
+                            <i class="fas fa-code-branch"></i>
+                            ${repo.forks_count}
+                        </div>
+                        ${repo.language ? `
+                            <div class="repo-stat">
+                                <div class="language-color" style="background-color: ${languageColors[repo.language] || '#6c757d'}; width: 12px; height: 12px; border-radius: 50%;"></div>
+                                ${repo.language}
+                            </div>
+                        ` : ''}
+                        <div class="repo-stat">
+                            <i class="far fa-clock"></i>
+                            ${new Date(repo.updated_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateLoadingMessage(message) {
+            const loadingText = document.querySelector('#loading p');
+            if (loadingText) {
+                loadingText.textContent = message;
+            }
+        }
+
+        function showPartialContent() {
+            // Show stats and repos immediately while languages load
+            const statsSection = document.getElementById('github-stats');
+            const repoSection = document.querySelector('.repositories-section');
+            
+            if (statsSection && repoSection) {
+                statsSection.style.opacity = '1';
+                repoSection.style.opacity = '1';
+                statsSection.style.display = 'grid';
+                repoSection.style.display = 'block';
+            }
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>${message}</p>
+                    <p>Please check the username or try again later.</p>
+                </div>
+            `;
+            document.getElementById('refresh-btn').style.display = 'block';
+        }
+
+        async function loadGitHubData() {
+            const loading = document.getElementById('loading');
+            const content = document.getElementById('content');
+            const errorContainer = document.getElementById('error-container');
+            const refreshBtn = document.getElementById('refresh-btn');
+
+            loading.style.display = 'block';
+            content.style.display = 'none';
+            errorContainer.innerHTML = '';
+            refreshBtn.style.display = 'none';
+
+            try {
+                await fetchGitHubData();
+                
+                // Show languages after they're loaded (renderRepositories is already called in fetchGitHubData)
+                renderLanguages();
+                
+                loading.style.display = 'none';
+                content.style.display = 'block';
+                
+                // Add success message
+                setTimeout(() => {
+                    const successMsg = document.createElement('div');
+                    successMsg.style.cssText = `
+                        position: fixed;
+                        top: 80px;
+                        right: 20px;
+                        background: #10B981;
+                        color: white;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        z-index: 1000;
+                        animation: slideIn 0.3s ease;
+                    `;
+                    successMsg.innerHTML = '<i class="fas fa-check"></i> Data loaded successfully!';
+                    document.body.appendChild(successMsg);
+                    
+                    setTimeout(() => {
+                        successMsg.style.animation = 'slideOut 0.3s ease';
+                        setTimeout(() => successMsg.remove(), 300);
+                    }, 2000);
+                }, 100);
+                
+            } catch (error) {
+                loading.style.display = 'none';
+                showError(`Failed to load GitHub data: ${error.message}`);
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                themeToggle.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle i');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.className = 'fas fa-sun';
+            }
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            loadGitHubData();
+        });
+    </script>
+</body>
+</html>

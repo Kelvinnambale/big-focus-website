@@ -107,7 +107,11 @@
     .nav-container {
         padding: 0 1.5rem;
     }
-    
+    .hero{
+        height: auto;
+        min-height: 100vh;
+        padding: 3rem 0;
+    }
     .hero h1 {
         font-size: 2.8rem;
     }
@@ -457,7 +461,25 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 400px)  and  (max-width: 480px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    .hero{
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
     .projects-grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;

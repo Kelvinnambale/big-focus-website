@@ -57,7 +57,110 @@
             line-height: 1.6;
             transition: all 0.3s ease;
         }
+        
+        /* Header */
+        .header {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
 
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .back-button {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+        }
         .skills-section {
             padding: 80px 0;
             background: var(--bg-primary);

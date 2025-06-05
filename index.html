@@ -374,7 +374,127 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .about-text {
+                padding-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 2rem 1rem;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .founder-name {
+                font-size: 1.5rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
         /* Services Section */
         .services-grid {
             display: grid;
@@ -893,6 +1013,17 @@
                     <p>With extensive experience in IT consulting and digital solutions, I specialize in helping businesses leverage technology to achieve their goals. My expertise spans web development, graphic design, networking, and comprehensive IT support services.</p>
                     <p>Through Namstech Digital Solutions, I provide end-to-end technology services that empower businesses to thrive in the digital age. From custom web development to government service facilitation, I'm committed to delivering excellence in every project.</p>
                     <p>My approach combines technical expertise with business acumen to deliver solutions that not only work but drive real business value.</p>
+                    <div class="stats-grid fade-in">
+                        <div class="stat-item">
+                            <div class="stat-number">13+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1258,6 +1389,43 @@
                     themeToggleBtn.textContent = '☀️';
                 }
             });
+        });
+        // Stats counter animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                const suffix = stat.textContent.includes('%') ? '%' : '+';
+                const increment = target / 50;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (suffix === '%' ? '%' : '+');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + (suffix === '%' ? '%' : '+');
+                    }
+                }, 50);
+            });
+        }
+
+        // Trigger stats animation when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('stats-grid')) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                observer.observe(statsGrid);
+            }
         });
     </script>
 

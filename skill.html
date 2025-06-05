@@ -741,6 +741,529 @@
 .reviews-display::-webkit-scrollbar-thumb:hover {
     background: #0052a3;
 }
+/* ============================================
+   COMPREHENSIVE MEDIA QUERIES FOR ALL SCREENS
+   ============================================ */
+
+/* Extra Small Devices (Phones, 320px and up) */
+@media (max-width: 374px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-left {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .languages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .repo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .repo-card {
+        padding: 15px;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .review-form,
+    .reviews-display {
+        padding: 1rem;
+    }
+    
+    .star {
+        font-size: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Devices (Phones, 375px - 575px) */
+@media (min-width: 375px) and (max-width: 575px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .stat-card {
+        padding: 25px 15px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .repo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .nav-container {
+        flex-direction: row;
+    }
+    
+    .nav-left {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .back-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+/* Medium Small Devices (Large Phones, 576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .repo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .review-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .reviews-display {
+        max-height: 500px;
+    }
+    
+    .repo-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+/* Medium Devices (Tablets, 768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    .reviews-display {
+        max-height: 550px;
+    }
+    
+    .nav-links {
+        gap: 1.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    .stat-card {
+        padding: 25px;
+    }
+    
+    .repo-card {
+        padding: 20px;
+    }
+}
+
+/* Large Devices (Small Desktops, 992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+    }
+    
+    .reviews-display {
+        max-height: 600px;
+    }
+    
+    .nav-links {
+        gap: 2rem;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-8px);
+    }
+    
+    .language-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Extra Large Devices (Large Desktops, 1200px - 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+    
+    .stat-card {
+        padding: 30px;
+    }
+    
+    .repo-card {
+        padding: 25px;
+    }
+    
+    .review-form,
+    .reviews-display {
+        padding: 2rem;
+    }
+}
+
+/* Extra Extra Large Devices (Very Large Desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .section-title {
+        font-size: 3.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+    
+    .stat-card {
+        padding: 35px;
+    }
+    
+    .stat-number {
+        font-size: 2.8rem;
+    }
+    
+    .repo-card {
+        padding: 30px;
+    }
+    
+    .review-form,
+    .reviews-display {
+        padding: 2.5rem;
+    }
+}
+
+/* Ultra Wide Screens (1600px and up) */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1500px;
+    }
+    
+    .section-title {
+        font-size: 3.5rem;
+    }
+    
+    .github-stats {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 35px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+    
+    .stat-card {
+        padding: 40px;
+    }
+    
+    .repo-card {
+        padding: 35px;
+    }
+}
+
+/* Landscape Orientation for Tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .github-stats {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+    }
+    
+    .stat-card {
+        padding: 20px 15px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .repo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Portrait Orientation for Tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .github-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .languages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .repo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .stat-icon {
+        font-size: 2.3rem;
+    }
+    
+    .logo {
+        font-weight: 800;
+    }
+    
+    .theme-toggle {
+        font-size: 1.1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .theme-toggle,
+    .back-button,
+    .refresh-btn,
+    .review-form {
+        display: none !important;
+    }
+    
+    .container {
+        padding: 0;
+        max-width: none;
+    }
+    
+    .section-title {
+        color: #000 !important;
+    }
+    
+    .stat-card,
+    .language-card,
+    .repo-card,
+    .review-item {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+    }
+    
+    .reviews-display {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .spinner {
+        animation: none;
+    }
+    
+    .stat-card:hover,
+    .language-card:hover,
+    .repo-card:hover,
+    .review-item:hover {
+        transform: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000 !important;
+        --shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+    }
+    
+    .stat-card,
+    .language-card,
+    .repo-card,
+    .review-item {
+        border: 2px solid #000 !important;
+    }
+}
     </style>
 </head>
 <body>
